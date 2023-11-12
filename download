@@ -2,5 +2,5 @@
 download_url=$(wget -qO- -t1 -T2 "https://api.github.com/repos/liyiechoios/RatOS/releases/latest" | grep "browser_download_url" | grep "img.xz" | head -n 1 | awk -F "\":" '{print $2}' | sed 's/\"//g;;s/ //g')
 
 wget ${download_url}
-unxz --keep 20*-armbian-msm8916.img.xz
-mv 20*-armbian-msm8916.img armbian.img
+unxz --keep 20*-armbian-MSM8916.img.xz
+mv 20*-armbian-MSM8916.img armbian.img
