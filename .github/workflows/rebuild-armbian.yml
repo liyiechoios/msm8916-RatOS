@@ -69,7 +69,7 @@ jobs:
           sudo umount armbian
           sudo losetup -d /dev/loop404
           sudo img2simg armbian-msm8916.img rootfs.img
-          sudo 7z a -tzip rootfs.zip rootfs.img -r -mx=9
+          sudo 7z a -tzip rootfs.zip rootfs.img -r -mx=9 -v1500m
           sudo rm temp.img
           sudo rm -rf armbian
           sudo rm -rf armbian-msm8916
@@ -79,7 +79,7 @@ jobs:
       - name: 上传 Armbian 镜像至 Release
         uses: ncipollo/release-action@main
         with:
-          artifacts: "msm8916-RatOS/rootfs.zip,msm8916-RatOS/kernel/boot.img"
+          artifacts: "msm8916-RatOS/rootfs.zip*,msm8916-RatOS/kernel/boot.img"
           name: ${{ steps.repack.outputs.build_tag }}
           tag: ${{ steps.repack.outputs.build_tag }}
           allowUpdates: true
