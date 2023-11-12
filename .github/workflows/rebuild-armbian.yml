@@ -31,13 +31,13 @@ jobs:
           git clone https://github.com/liyiechoios/msm8916-RatOS
       - name: 下载镜像
         run: |
-          pushd msm8916-armbian
+          pushd msm8916-RatOS
           ./download
           popd
       - name: 打包 Armbian
         id: repack
         run: |
-          pushd msm8916-armbian
+          pushd msm8916-RatOS
           sudo mkdir armbian
           sudo mkdir armbian-msm8916
           sudo mkdir temp
@@ -79,7 +79,7 @@ jobs:
       - name: 上传 Armbian 镜像至 Release
         uses: ncipollo/release-action@main
         with:
-          artifacts: "msm8916-armbian/rootfs.zip,msm8916-armbian/kernel/boot.img"
+          artifacts: "msm8916-RatOS/rootfs.zip,msm8916-RatOS/kernel/boot.img"
           name: ${{ steps.repack.outputs.build_tag }}
           tag: ${{ steps.repack.outputs.build_tag }}
           allowUpdates: true
