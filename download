@@ -1,7 +1,6 @@
 #!/bin/bash
-tag=$(wget -qO- -t1 -T2 "https://api.github.com/repos/ophub/amlogic-s9xxx-armbian/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g')
-file=$(wget -qO- -t1 -T2 "https://api.github.com/repos/ophub/amlogic-s9xxx-armbian/releases/latest" | grep "trunk" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g')
+download_url=$(wget -qO- -t1 -T2 "https://api.github.com/repos/liyiechoios/RatOS/releases/latest" | grep "browser_download_url" | grep "img.xz" | head -n 1 | awk -F "\":" '{print $2}' | sed 's/\"//g;;s/ //g')
 
-wget https://github.com/ophub/amlogic-s9xxx-armbian/releases/download/${tag}/${file}
-gunzip Armbian_*.gz
-mv Armbian_*.img armbian.img
+wget ${download_url}
+unxz --keep 20*-armbian-msm8916.img.xz
+mv 20*-armbian-msm8916.img armbian.img
