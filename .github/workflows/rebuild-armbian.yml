@@ -58,7 +58,7 @@ jobs:
           sudo mount --bind /dev/pts temp/dev/pts
           sudo mount --bind /sys temp/sys
           sudo chroot temp /tmp/chroot.sh
-          sudo rm temp/tmp/*
+          sudo rm -rf temp/tmp/*
           sudo umount temp/proc
           sudo umount temp/dev/pts
           sudo umount temp/dev
