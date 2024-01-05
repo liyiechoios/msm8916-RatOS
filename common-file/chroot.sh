@@ -3,7 +3,7 @@
 install_package() {
     apt update
     dpkg -i /tmp/*.deb
-    apt install -y coreutils network-manager bc bsdmainutils gawk
+    apt install -y coreutils network-manager modemmanager bc bsdmainutils gawk
     apt --fix-broken install -y
     apt install -y libqmi-utils
     DEBIAN_FRONTEND=noninteractive apt install -y iptables-persistent
@@ -15,8 +15,8 @@ remove_package() {
 }
 
 set_language() {
-    locale-gen zh_CN zh_CN.UTF-8
-    update-locale LC_ALL=zh_CN.UTF-8 LANG=zh_CN.UTF-8
+    locale-gen en_US en_US.UTF-8
+    update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
     fc-cache -fv
 }
 
@@ -24,6 +24,12 @@ common_set() {
     rm /usr/sbin/openstick-startup-diagnose.sh
     rm /usr/lib/systemd/system/openstick-startup-diagnose.service
     rm /usr/lib/systemd/system/openstick-startup-diagnose.timer
+    rm /usr/sbin/openstick-gc-manager.sh
+    rm /usr/lib/systemd/system/openstick-gc-manager.service
+    rm /usr/sbin/openstick-button-monitor.sh
+    rm /usr/lib/systemd/system/openstick-button-monitor.service
+    rm /usr/sbin/openstick-sim-changer.sh
+    rm /usr/lib/systemd/system/openstick-sim-changer.service
     cp /tmp/mobian-setup-usb-network /usr/sbin/
     cp /tmp/mobian-setup-usb-network.service /usr/lib/systemd/system/mobian-setup-usb-network.service
     cp /tmp/gpioled /usr/sbin/
@@ -38,10 +44,9 @@ common_set() {
     sed -i s/'Odroid N2'/MSM8916/g /etc/armbian-release
     sed -i s/'# ZRAM_PERCENTAGE=50'/ZRAM_PERCENTAGE=300/g /etc/default/armbian-zram-config
     sed -i s/'# MEM_LIMIT_PERCENTAGE=50'/MEM_LIMIT_PERCENTAGE=300/g /etc/default/armbian-zram-config
-    sed -i '21 s/$sim/sim:sel/' /usr/sbin/openstick-sim-changer.sh
     rm /etc/localtime
-    ln -s /usr/share/zoneinfo/Asia/Chongqing /etc/localtime
-    rm /lib/systemd/system/ModemManager.service
+    ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+    systemctl mask ModemManager.service
 }
 
 clean_file() {
