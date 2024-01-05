@@ -24,8 +24,6 @@ common_set() {
     rm /usr/sbin/openstick-startup-diagnose.sh
     rm /usr/lib/systemd/system/openstick-startup-diagnose.service
     rm /usr/lib/systemd/system/openstick-startup-diagnose.timer
-    rm /usr/sbin/openstick-gc-manager.sh
-    rm /usr/lib/systemd/system/openstick-gc-manager.service
     rm /usr/sbin/openstick-button-monitor.sh
     rm /usr/lib/systemd/system/openstick-button-monitor.service
     rm /usr/sbin/openstick-sim-changer.sh
