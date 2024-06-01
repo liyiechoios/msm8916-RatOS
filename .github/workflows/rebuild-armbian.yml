@@ -71,7 +71,7 @@ jobs:
           sudo rm temp.img
           sudo rm -rf temp
           sudo img2simg armbian-msm8916.img rootfs.img
-          sudo 7z a -tzip rootfs.zip rootfs.img -r -mx=9 -v1500m
+          sudo 7z a -tzip rootfs.zip rootfs.img -r -mx=9 -v2000m
           sudo rm -rf armbian
           sudo rm -rf armbian-msm8916
           popd
