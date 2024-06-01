@@ -45,6 +45,9 @@ common_set() {
     rm /etc/localtime
     ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
     systemctl mask ModemManager.service
+    systemctl enable mobian-setup-usb-network.service
+    systemctl enable openstick-expanddisk-startup.service
+    systemctl enable gpioled.service
 }
 
 clean_file() {
