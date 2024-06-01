@@ -2,6 +2,7 @@
 Description=Setup USB networking
 Requires=NetworkManager.service
 After=NetworkManager.service
+ConditionFirstBoot=yes
 
 [Service]
 Type=oneshot
